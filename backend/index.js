@@ -1,3 +1,4 @@
+require("dotenv").config()
 require("node:dns").setServers(["8.8.8.8", "8.8.4.4"])
 const express = require("express")
 const cors = require("cors")
@@ -8,7 +9,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://muruga:123@cluster0.frb3hsc.mongodb.net/passkey?appName=Cluster0").then(function () {
+mongoose.connect(process.env.MONGODB_URI).then(function () {
     console.log("Connected to DB")
 }).catch(function (err) { console.log("Failed to connect", err.message) })
 
